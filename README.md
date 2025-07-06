@@ -22,9 +22,9 @@ bike-sharing-api/
 ```
 
 ## Prerequisites
-Python 3.8+ (< 3.13)
-MySQL server
-Git (for cloning)
+- Python 3.8+ (< 3.13)
+- MySQL server
+- Git (for cloning)
 
 ## Installation
 

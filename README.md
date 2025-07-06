@@ -21,13 +21,18 @@ bike-sharing-api/
 └── README.md            # This file
 ```
 
+## Prerequisites
+Python 3.8+ (< 3.13)
+MySQL server
+Git (for cloning)
+
 ## Installation
 
 ### 1. Clone the Repository
 
 ```bash
 git clone <repository-url>
-cd bike-sharing-api
+cd BikeSharingAnalysis
 ```
 
 ### 2. Create Virtual Environment
@@ -152,22 +157,23 @@ Make bike rental predictions by providing input features in JSON format.
 
 **Example:**
 ```bash
-curl -X POST "http://localhost:8000/predict" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "season": 1,
-    "month": 6,
-    "day": 15,
-    "weekday": 1,
-    "hour": 12,
-    "temp": 0.6,
-    "humidity": 0.5,
-    "windspeed": 0.2,
-    "year": 1,
-    "holiday": 0,
-    "workingday": 1,
-    "weathersit": 1
-  }'
+curl -X POST "http://localhost:8000/predict" `
+  -H "Content-Type: application/json" `
+  -d "{
+    `"season`": 1,
+    `"month`": 6,
+    `"day`": 15,
+    `"weekday`": 1,
+    `"hour`": 12,
+    `"temp`": 0.6,
+    `"humidity`": 0.5,
+    `"windspeed`": 0.2,
+    `"year`": 1,
+    `"holiday`": 0,
+    `"workingday`": 1,
+    `"weathersit`": 1
+  }"
+
 ```
 If no data is provided, default values will be used.
 

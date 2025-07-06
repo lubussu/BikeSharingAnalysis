@@ -21,13 +21,18 @@ bike-sharing-api/
 └── README.md            # This file
 ```
 
+## Prerequisites
+- Python 3.8+ (< 3.13)
+- MySQL server
+- Git (for cloning)
+
 ## Installation
 
 ### 1. Clone the Repository
 
 ```bash
 git clone <repository-url>
-cd bike-sharing-api
+cd BikeSharingAnalysis
 ```
 
 ### 2. Create Virtual Environment
@@ -132,16 +137,18 @@ curl -X GET "http://localhost:8000/analytics/export"
 
 ### 4. Train Model
 ```bash
-POST /train-model?hourly=false
+POST /train-model?hourly=true
 ```
 Trains the machine learning model for predictions.
 
 **Parameters:**
-- `hourly`: Boolean (true for hourly data, false for daily data)
+- `hourly`: Boolean
+  - true: Trains the model eith hourly data (requires the hour field in predictions)
+  - false: Trains the model with daily data (do not include the hour field in predictions)
 
 **Example:**
 ```bash
-curl -X POST "http://localhost:8000/train-model?hourly=false"
+curl -X POST "http://localhost:8000/train-model?hourly=true"
 ```
 
 ### 5. Make Predictions
@@ -152,22 +159,23 @@ Make bike rental predictions by providing input features in JSON format.
 
 **Example:**
 ```bash
-curl -X POST "http://localhost:8000/predict" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "season": 1,
-    "month": 6,
-    "day": 15,
-    "weekday": 1,
-    "hour": 12,
-    "temp": 0.6,
-    "humidity": 0.5,
-    "windspeed": 0.2,
-    "year": 1,
-    "holiday": 0,
-    "workingday": 1,
-    "weathersit": 1
-  }'
+curl -X POST "http://localhost:8000/predict" `
+  -H "Content-Type: application/json" `
+  -d "{
+    `"season`": 1,
+    `"month`": 6,
+    `"day`": 15,
+    `"weekday`": 1,
+    `"hour`": 12,
+    `"temp`": 0.6,
+    `"humidity`": 0.5,
+    `"windspeed`": 0.2,
+    `"year`": 1,
+    `"holiday`": 0,
+    `"workingday`": 1,
+    `"weathersit`": 1
+  }"
+
 ```
 If no data is provided, default values will be used.
 
@@ -193,25 +201,25 @@ curl -X POST "http://localhost:8000/load-data"
 curl -X GET "http://localhost:8000/analytics"
 
 # 3. Train model
-curl -X POST "http://localhost:8000/train-model?hourly=false"
+curl -X POST "http://localhost:8000/train-model?hourly=true"
 
 # 4. Make prediction
-curl -X POST "http://localhost:8000/predict" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "season": 2,
-    "month": 5,
-    "day": 10,
-    "weekday": 2,
-    "hour": 14,
-    "temp": 0.7,
-    "humidity": 0.6,
-    "windspeed": 0.15,
-    "year": 1,
-    "holiday": 0,
-    "workingday": 1,
-    "weathersit": 1
-  }'
+curl -X POST "http://localhost:8000/predict" `
+  -H "Content-Type: application/json" `
+  -d "{
+    `"season`": 1,
+    `"month`": 6,
+    `"day`": 15,
+    `"weekday`": 1,
+    `"hour`": 12,
+    `"temp`": 0.6,
+    `"humidity`": 0.5,
+    `"windspeed`": 0.2,
+    `"year`": 1,
+    `"holiday`": 0,
+    `"workingday`": 1,
+    `"weathersit`": 1
+  }"
 ```
 
 ## Output Files
@@ -237,4 +245,3 @@ The application generates several output files:
 ### Testing
 
 Run the application and test all endpoints using the provided curl commands or the interactive API documentation at `/docs`.
-

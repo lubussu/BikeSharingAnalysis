@@ -41,7 +41,7 @@ async def root():
             "train_model": "/train-model",
             "predict": "/predict",
             "analytics": "/analytics",
-            "export": "/export/{data_type}"
+            "export": "/analytics/export/"
         }
     }
 
